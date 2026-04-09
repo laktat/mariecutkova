@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAJA - Malířka a lektorka Marie Čutková</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hlavni: '#5c4b38',
+                        pozadi: '#faf8f5'
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'serif'],
+                        sans: ['Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lightbox2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <style>
+        /* Vlastní stylování pro lepší integraci */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Georgia', serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+        }
+        
+        .transition-smooth {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .image-hover {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .image-hover img {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .image-hover:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-pozadi text-stone-800">
+
+    <!-- ============================================
+         NAVIGACE (STICKY)
+         ============================================ -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="text-2xl font-serif font-bold text-hlavni">
+                    MAJA
+                </div>
+                
+                <!-- Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-hlavni font-semibold transition-smooth hover:text-opacity-70">Domů</a>
+                    <a href="o-mne.html" class="text-stone-700 transition-smooth hover:text-hlavni">O mně</a>
+                    <a href="galerie.html" class="text-stone-700 transition-smooth hover:text-hlavni">Galerie</a>
+                    <a href="#kurzy" class="text-stone-700 transition-smooth hover:text-hlavni">Kurzy</a>
+                    <a href="#kontakt" class="text-stone-700 transition-smooth hover:text-hlavni">Kontakt</a>
+                </div>
+                
+                <!-- Mobile Menu Button (zjednodušený) -->
+                <div class="md:hidden">
+                    <button class="text-hlavni text-2xl">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SEKCE
+         ============================================ -->
+    <section class="hero-section py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl sm:text-6xl font-serif font-bold text-hlavni mb-6">
+                Umění, které vypráví příběhy
+            </h1>
+            <p class="text-lg text-stone-700 mb-8 max-w-2xl mx-auto">
+                Každý tah štětce nese emoci, vášeň a osobitý pohled na svět. 
+                Pojďte se ponořit do světa barev, kde se realita a fantazie prolínají.
+            </p>
+            
+            <!-- Tlačítka -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="o-mne.html" class="bg-hlavni text-white px-8 py-3 rounded-lg font-semibold transition-smooth hover:bg-opacity-80 hover:shadow-lg transform hover:scale-105">
+                    Přečtěte si můj příběh
+                </a>
+                <a href="galerie.html" class="bg-white text-hlavni border-2 border-hlavni px-8 py-3 rounded-lg font-semibold transition-smooth hover:bg-hlavni hover:text-white transform hover:scale-105">
+                    Prohlédnout obrazy
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SEKCE: MOJE TVORBA
+         ============================================ -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Nadpis - proklikávací na galerii -->
+            <h2 class="text-4xl font-serif font-bold text-hlavni mb-12 text-center">
+                <a href="galerie.html" class="transition-smooth hover:text-opacity-70 cursor-pointer">
+                    Moje tvorba
+                </a>
+            </h2>
+            
+            <!-- Kontejner s mřížkou a šipičkami -->
+            <div class="relative">
+                <!-- Levá šipička -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 z-10 bg-hlavni text-white rounded-full w-12 h-12 flex items-center justify-center transition-smooth hover:bg-opacity-80 hover:scale-110 active:scale-95 hidden md:flex">
+                    <span class="text-2xl">←</span>
+                </button>
+                
+                <!-- Mřížka s obrázky -->
+                <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 overflow-hidden">
+                    <!-- Obrázky se vygenerují JavaScriptem -->
+                </div>
+                
+                <!-- Pravá šipička -->
+                <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 z-10 bg-hlavni text-white rounded-full w-12 h-12 flex items-center justify-center transition-smooth hover:bg-opacity-80 hover:scale-110 active:scale-95 hidden md:flex">
+                    <span class="text-2xl">→</span>
+                </button>
+            </div>
+            
+                        <!-- Indikátory a tlačítko na celou galerii -->
+            <div class="flex flex-col items-center gap-6">
+                <!-- Tlačítko na celou galerii -->
+                <a href="galerie.html" class="inline-block bg-hlavni text-white px-8 py-3 rounded-lg font-semibold transition-smooth hover:bg-opacity-80 transform hover:scale-105">
+                    Zobrazit celou galerii
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SEKCE: VÝTVARNÉ KURZY
+         ============================================ -->
+    <section id="kurzy" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-serif font-bold text-hlavni mb-12 text-center">
+                Výtvarné kurzy
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Levá část: Kurzy -->
+                <div class="space-y-6">
+                    <!-- Kurzy pro děti -->
+                    <div class="bg-pozadi p-8 rounded-lg border-l-4 border-hlavni shadow-md">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🎨</span>
+                            <h3 class="text-2xl font-serif font-bold text-hlavni">Kurzy pro děti</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed">
+                            Seznamte své děti se světem umění. Naučíme je základní techniky malby, 
+                            kresby a vlastnímu tvůrčímu vyjádření. Vhodné od 6 let.
+                        </p>
+                    </div>
+                    
+                    <!-- Kurzy pro dospělé -->
+                    <div class="bg-pozadi p-8 rounded-lg border-l-4 border-hlavni shadow-md">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">✨</span>
+                            <h3 class="text-2xl font-serif font-bold text-hlavni">Kurzy pro dospělé</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed">
+                            Uvolněte si duši skrze umění. Hlubší techniky v akrylu, oleji a akvarelu. 
+                            Žádné předchozí zkušenosti nejsou nutné.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Pravá část: Obrázek -->
+                <div class="flex justify-center">
+                    <div class="relative transform rotate-3 shadow-2xl rounded-lg overflow-hidden">
+                        <img src="obrazky/z-kurzu.jpg" alt="Kurzy" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SEKCE: KONTAKT
+         ============================================ -->
+    <section id="kontakt" class="py-20 px-4 sm:px-6 lg:px-8 bg-hlavni text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-serif font-bold mb-12">
+                Pojďme se spojit
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Email -->
+                <a href="mailto:mariecutkova@seznam.cz" class="group bg-white bg-opacity-10 p-8 rounded-lg transition-smooth hover:bg-opacity-20 hover:shadow-xl transform hover:scale-105 cursor-pointer">
+                    <p class="text-2xl mb-2 group-hover:scale-110 transition-transform">📧</p>
+                    <p class="font-semibold mb-2">Email</p>
+                    <p class="group-hover:underline">
+                        mariecutkova@seznam.cz
+                    </p>
+                </a>
+                
+                <!-- Telefon -->
+                <a href="tel:+420777259909" class="group bg-white bg-opacity-10 p-8 rounded-lg transition-smooth hover:bg-opacity-20 hover:shadow-xl transform hover:scale-105 cursor-pointer">
+                    <p class="text-2xl mb-2 group-hover:scale-110 transition-transform">📞</p>
+                    <p class="font-semibold mb-2">Telefon</p>
+                    <p class="group-hover:underline">
+                        +420 777 259 909
+                    </p>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://instagram.com/mariecutkova_cb" target="_blank" class="group bg-white bg-opacity-10 p-8 rounded-lg transition-smooth hover:bg-opacity-20 hover:shadow-xl transform hover:scale-105 cursor-pointer">
+                    <p class="text-2xl mb-2 group-hover:scale-110 transition-transform">📸</p>
+                    <p class="font-semibold mb-2">Instagram</p>
+                    <p class="group-hover:underline">
+                        @mariecutkova_cb
+                    </p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PATIČKA
+         ============================================ -->
+    <footer class="bg-stone-900 text-white text-center py-6">
+        <p>&copy; 2026 Marie Čutková (MAJA). Všechna práva vyhrazena.</p>
+    </footer>
+
+    <!-- jQuery pro Lightbox2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    
+    <script>
+        // ============================================
+        // DYNAMICKÁ GALERIE - KAROUSEL S POSOUVÁNÍM PO JEDNOM OBRÁZKU
+        // ============================================
+        
+        // NASTAVENÍ: Změň tuto konfiguraci podle potřeby
+        const GALLERY_CONFIG = {
+            itemsPerPage: 3,              // Kolik obrázků se zobrazí na stránce
+            imageFolder: 'obrazky',       // Složka s obrázky
+            imagePrefix: 'obraz',         // Prefix názvů obrázků (obraz1.jpg, obraz2.jpg, ...)
+            imageExtension: '.jpg',       // Přípona obrázků
+            lightboxName: 'uvodni-galerie', // Název lightboxu
+            startIndex: 1                 // Od kterého čísla začínají obrázky (1 nebo 0)
+        };
+        
+        // Detekce počtu obrázků - procházíme přes běžné počty (1-100)
+        async function detectImageCount() {
+            let count = 0;
+            for (let i = GALLERY_CONFIG.startIndex; i <= 100; i++) {
+                const imageUrl = `${GALLERY_CONFIG.imageFolder}/${GALLERY_CONFIG.imagePrefix}${i}${GALLERY_CONFIG.imageExtension}`;
+                try {
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
+                    if (response.ok) {
+                        count = i;
+                    } else {
+                        break;
+                    }
+                } catch (e) {
+                    break;
+                }
+            }
+            return count;
+        }
+        
+        // Inicializace galerie
+        async function initGallery() {
+            const totalImages = await detectImageCount();
+            
+            if (totalImages === 0) {
+                console.error('Nenalezeny žádné obrázky v galerii');
+                return;
+            }
+            
+            const itemsPerPage = GALLERY_CONFIG.itemsPerPage;
+            const maxStartPosition = totalImages - itemsPerPage + 1; // Poslední možná pozice
+            let currentPosition = 0; // Aktuální pozice prvního obrázku
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            const positionIndicator = document.getElementById('positionIndicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Vygeneruj všechny obrázky do gridu
+            galleryGrid.innerHTML = '';
+            for (let i = GALLERY_CONFIG.startIndex; i <= totalImages; i++) {
+                const imageUrl = `${GALLERY_CONFIG.imageFolder}/${GALLERY_CONFIG.imagePrefix}${i}${GALLERY_CONFIG.imageExtension}`;
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'image-hover shadow-lg gallery-item';
+                galleryItem.dataset.index = i - GALLERY_CONFIG.startIndex;
+                galleryItem.innerHTML = `
+                    <a href="${imageUrl}" data-lightbox="${GALLERY_CONFIG.lightboxName}">
+                        <img src="${imageUrl}" alt="Umělecké dílo ${i}" class="w-full h-64 object-cover">
+                    </a>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            }
+            
+            // Funkce pro zobrazení správné sady obrázků na základě pozice
+            function showGalleryPosition(position) {
+                currentPosition = position;
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                
+                // Skrýt všechny obrázky
+                galleryItems.forEach(item => {
+                    item.classList.add('hidden');
+                });
+                
+                // Zobrazit 3 obrázky od aktuální pozice
+                for (let i = 0; i < itemsPerPage; i++) {
+                    const itemIndex = position + i;
+                    if (itemIndex < totalImages && galleryItems[itemIndex]) {
+                        galleryItems[itemIndex].classList.remove('hidden');
+                    }
+                }
+                
+                // Aktualizovat text pozice
+                positionIndicator.textContent = `Obrázky ${position + 1}-${Math.min(position + itemsPerPage, totalImages)} z ${totalImages}`;
+                
+                // Aktualizovat stav tlačítek
+                prevBtn.disabled = position === 0;
+                nextBtn.disabled = position >= maxStartPosition;
+                
+                if (position === 0) {
+                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+                
+                if (position >= maxStartPosition) {
+                    nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+            
+            // Event listenery pro šipičky - posun o 1 obrázek
+            prevBtn.addEventListener('click', () => {
+                if (currentPosition > 0) {
+                    showGalleryPosition(currentPosition - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentPosition < maxStartPosition) {
+                    showGalleryPosition(currentPosition + 1);
+                }
+            });
+            
+            // Inicializace galerie na první pozici
+            showGalleryPosition(0);
+            
+            // Inicializace Lightbox2
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'showImageNumberLabel': true,
+                'alwaysShowNavOnTouchDevices': true
+            });
+        }
+        
+        // Spusť inicializaci když se stránka načte
+        document.addEventListener('DOMContentLoaded', initGallery);
+    </script>
+
+</body>
+</html>

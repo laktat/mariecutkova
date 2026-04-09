@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie - MAJA Marie Čutková</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hlavni: '#5c4b38',
+                        pozadi: '#faf8f5'
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'serif'],
+                        sans: ['Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lightbox2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <style>
+        /* Vlastní stylování */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Georgia', serif;
+        }
+        
+        .transition-smooth {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .image-hover {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .image-hover img {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .image-hover:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-pozadi text-stone-800">
+
+    <!-- ============================================
+         NAVIGACE (STICKY)
+         ============================================ -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="text-2xl font-serif font-bold text-hlavni">
+                    MAJA
+                </div>
+                
+                <!-- Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-stone-700 transition-smooth hover:text-hlavni">Domů</a>
+                    <a href="o-mne.html" class="text-stone-700 transition-smooth hover:text-hlavni">O mně</a>
+                    <a href="galerie.html" class="text-hlavni font-semibold transition-smooth hover:text-opacity-70">Galerie</a>
+                    <a href="index.html#kurzy" class="text-stone-700 transition-smooth hover:text-hlavni">Kurzy</a>
+                    <a href="index.html#kontakt" class="text-stone-700 transition-smooth hover:text-hlavni">Kontakt</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-hlavni text-2xl">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         GALERIE OBSAH
+         ============================================ -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Nadpis sekce -->
+            <h1 class="text-4xl sm:text-5xl font-serif font-bold text-hlavni mb-16 text-center">
+                Moje tvorba
+            </h1>
+            
+            <!-- Mřížka se všemi 9 obrázky -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Obrázek 1 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz1.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz1.jpg" alt="Umělecké dílo 1" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 2 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz2.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz2.jpg" alt="Umělecké dílo 2" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 3 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz3.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz3.jpg" alt="Umělecké dílo 3" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 4 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz4.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz4.jpg" alt="Umělecké dílo 4" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 5 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz5.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz5.jpg" alt="Umělecké dílo 5" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 6 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz6.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz6.jpg" alt="Umělecké dílo 6" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 7 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz7.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz7.jpg" alt="Umělecké dílo 7" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 8 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz8.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz8.jpg" alt="Umělecké dílo 8" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+                <!-- Obrázek 9 -->
+                <div class="image-hover shadow-lg">
+                    <a href="obrazky/obraz9.jpg" data-lightbox="galerie-maja">
+                        <img src="obrazky/obraz9.jpg" alt="Umělecké dílo 9" class="w-full h-80 object-cover">
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PATIČKA
+         ============================================ -->
+    <footer class="bg-stone-900 text-white text-center py-6 mt-20">
+        <p>&copy; 2026 Marie Čutková (MAJA). Všechna práva vyhrazena.</p>
+    </footer>
+
+    <!-- jQuery pro Lightbox2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    
+    <script>
+        // Inicializace Lightbox2
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'showImageNumberLabel': true,
+            'alwaysShowNavOnTouchDevices': true
+        });
+    </script>
+
+</body>
+</html>
