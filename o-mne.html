@@ -5,8 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Marie Čutková</title>
+    <!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    hlavni: '#5c4b38',
+                    pozadi: '#faf8f5'
+                },
+                fontFamily: {
+                    serif: ['Georgia', 'serif'],
+                    sans: ['Segoe UI', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    /* Vlastní stylování */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Georgia', serif;
+    }
+    
+    .profile-image {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid #faf8f5;
+        box-shadow: 0 10px 30px rgba(92, 75, 56, 0.3);
+    }
+    
+    .transition-smooth {
+        transition: all 0.3s ease-in-out;
+    }
+</style>
 </head>
 <body>
+    <!-- ============================================
+     NAVIGACE (STICKY)
+     ============================================ -->
+<nav class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="text-2xl font-serif font-bold text-hlavni">
+                MAJA
+            </div>
+            
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-stone-700 transition-smooth hover:text-hlavni">Domů</a>
+                <a href="o-mne.html" class="text-hlavni font-semibold transition-smooth hover:text-opacity-70">O mně</a>
+                <a href="galerie.html" class="text-stone-700 transition-smooth hover:text-hlavni">Galerie</a>
+                <a href="index.html#kurzy" class="text-stone-700 transition-smooth hover:text-hlavni">Kurzy</a>
+                <a href="index.html#kontakt" class="text-stone-700 transition-smooth hover:text-hlavni">Kontakt</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="text-hlavni text-2xl">☰</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================
+     HLAVNÍ OBSAH: PŘÍBĚH
+     ============================================ -->
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Nadpis sekce -->
+        <h1 class="text-4xl sm:text-5xl font-serif font-bold text-hlavni mb-16 text-center">
+            Můj příběh
+        </h1>
+        
+        <!-- Dvousloupcový layout - UPRAVENO: Text vlevo, Fotografie vpravo -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Levá část: Text -->
+            <div class="space-y-6 text-lg leading-relaxed">
+                <p>
+                    Jménem <strong>Marie Čutková</strong>, známá také jako <strong>MAJA</strong>, 
+                    jsem rodačka z krásných <strong>Českých Budějovic</strong>. 
+                    Toto město, se svou historií a jedinečnou atmosférou, formovalo můj pohled na svět 
+                    a později i na umění.
+                </p>
+                
+                <p>
+                    Ačkoli jsem měla pestrou kariérní cestu, jedním z mých raných průvodců byl 
+                    renomovaný malíř <strong>Milan Peterka</strong>, který mě naučil základy a principy 
+                    klasické malbičky. Jeho lekce o barvě a kompozici si nesu až do dneška.
+                </p>
+                
+                <p>
+                    Byla jsem také <strong>mistryní České republiky na kajaku</strong>, což mi dalo 
+                    disciplínu, vytrvalost a pochopení pro soutěživost. Kajak mne učil koncentraci 
+                    a čtení chvíle – dovednosti, které později objevuji i v umění.
+                </p>
+                
+                <p>
+                    Později jsem pracovala jako <strong>vizážistka</strong>, kde jsem se naučila vnímat 
+                    barvy, tvary a krasu v detailech. Tento obor mi otevřel oči pro tichou krásu 
+                    v každodennosti.
+                </p>
+                
+                <p>
+                    <strong>Vážná autonehoda</strong> byla přelomovým momentem mého života. 
+                    V dlouhém období zotavování jsem se rozhodla naplno vrhout na to, co mě vždy lákalo – 
+                    <strong>malování</strong>. To, co začalo jako terapie, se stalo vášní a posláním.
+                </p>
+                
+                <p>
+                    Dnes maluji mnoha technikami – <strong>akryl, kaligrafii, pastel, olej, akvarel a další. Věnuji se různým ručním prácem, realizuji se při lekcích pro školní třídy, 
+                    kde předvádím různorodé techniky výtvarné práce. Vedu výtvarné kurzy pro děti i dospělé.</strong>. 
+                    Každá technika má svůj vlastní jazyk, své tempo a svoji duši. Skrze ně všechny 
+                    se snažím zachytit emoci, příběhy a krásu, kterou vidím ve světě.
+                </p>
+                
+                <p>
+                    Věřím, že umění není luxus, ale nutnost. Učím ostatní, aby si uvědomili tu sílu, 
+                    která se skrývá v jejich tvoření. Každý z nás má v sobě umělce.
+                </p>
+            </div>
+            
+            <!-- Pravá část: Fotografie -->
+            <div class="flex justify-center lg:justify-start">
+                <img src="obrazky/profil.jpg" alt="Marie Čutková - MAJA" class="profile-image">
+            </div>
+            
+        </div>
+    </div>
+</section>        
+
+<!-- ============================================
+     PATIČKA
+     ============================================ -->
+<footer class="bg-stone-900 text-white text-center py-6 mt-20">
+    <p>&copy; 2026 Marie Čutková (MAJA). Všechna práva vyhrazena.</p>
+</footer>
     <header>
         <nav>
             <ul>
